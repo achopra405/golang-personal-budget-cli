@@ -66,7 +66,8 @@ func (b *Budget) AddItem(description string, price float32) error {
 func (b *Budget) RemoveItem(description string) {
 	for i := range b.Items {
 		if b.Items[i].Description == description {
-
+			b.Items = append(b.Items[:i], b.Items[i+1:]...)
+			break
 		}
 	}
 }
@@ -74,7 +75,10 @@ func (b *Budget) RemoveItem(description string) {
 // CreateBudget creates a new budget with a specified max
 func CreateBudget(month time.Month, max float32) (*Budget, error) {
 	var newBudget *Budget
-
+	var NewSlice []Item
+	var NewBudget Budget = Budget{Max: max, Items: NewSlice}
+	newBudget = &NewBudget
+	report[month] = newBudget
 	return newBudget, nil
 }
 
