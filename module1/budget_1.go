@@ -9,5 +9,5 @@ type Budget struct {
 // Item stores item information
 type Item struct {
 	Description string
-	MyPrice     float32
+	Price       float32
 }
